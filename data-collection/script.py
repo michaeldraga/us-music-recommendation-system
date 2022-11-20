@@ -125,7 +125,7 @@ async def initialize_authentication(session: ClientSession) -> None:
             print('Failed to retrieve token.')
             return
         store_token(data)
-        stored_token = data
+        stored_token = StoredToken.from_response(data)
 
     print('Using token: {}'.format(stored_token))
     spotify_access_token = stored_token.access_token
@@ -134,6 +134,25 @@ async def fetch_track(session: ClientSession, id: str):
     url = 'https://api.spotify.com/v1/tracks/{}'.format(id)
     try:
         async with session.get(url, headers=({} | get_auth_header())) as response:
+            content = await response.json()
+            return (url, 'OK', content)
+    except Exception as e:
+        print(e)
+        return (url, 'ERROR', None)
+
+async def fetch_many_tracks(session: ClientSession, ids: MutableSequence[str]):
+    if len(ids) == 0:
+        return []
+    elif len(ids) > 50:
+        print('Warning: You passed more than 50 ids. Only the first 50 will be used.')
+        ids = ids[:50]
+
+    url = 'https://api.spotify.com/v1/tracks'
+    params = {
+        'ids': ','.join(ids)
+    }
+    try:
+        async with session.get(url, params=params, headers=({} | get_auth_header())) as response:
             content = await response.json()
             return (url, 'OK', content)
     except Exception as e:
@@ -160,6 +179,25 @@ async def fetch_audio_features(session: ClientSession, id: str):
         print(e)
         return (url, 'ERROR', None)
 
+async def fetch_many_audio_features(session: ClientSession, ids: MutableSequence[str]):
+    if len(ids) == 0:
+        return []
+    elif len(ids) > 100:
+        print('Warning: You passed more than 100 ids. Only the first 100 will be used.')
+        ids = ids[:100]
+
+    url = 'https://api.spotify.com/v1/audio-features'
+    params = {
+        'ids': ','.join(ids)
+    }
+    try:
+        async with session.get(url, params=params, headers=({} | get_auth_header())) as response:
+            content = await response.json()
+            return (url, 'OK', content)
+    except Exception as e:
+        print(e)
+        return (url, 'ERROR', None)
+
 def print_json(data: dict):
     print(json.dumps(data, indent=4))
 
@@ -174,6 +212,8 @@ async def main():
         (_, status, data) = await fetch_audio_analysis(session, demo_track_id)
         print_json(data)
         (_, status, data) = await fetch_audio_features(session, demo_track_id)
+        print_json(data)
+        (_, status, data) = await fetch_many_tracks(session, [demo_track_id, demo_track_id, demo_track_id])
         print_json(data)
 
         
