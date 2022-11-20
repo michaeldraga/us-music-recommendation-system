@@ -1,16 +1,9 @@
-import random
-import time
-import array
-import itertools
-from typing import Tuple, MutableSequence, Union
+import asyncio
+import json
 import os
 import aiohttp
-from aiohttp import ClientSession
-import asyncio
-from SpotifyApi import SpotifyApi
 import dotenv
-import json
-import base64
+from SpotifyApi import SpotifyApi
 
 dotenv.load_dotenv()
 
