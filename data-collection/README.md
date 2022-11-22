@@ -2,7 +2,11 @@
 
 ## Strategy
 
-TODO
+To collect the data that we'll use for training and validating our model, we're taking an artist-track crawling approach.
+
+First, we will get the categories listed below from the Spotify API (further just called "API"). For each of these categories, we will be requesting the playlists contained within them. Afterwards, our algorithm will fetch general information about the tracks in all of these playlists, as well as their audio-features. This is where the main crawling loop starts. At the beginning, we will fetch all albums of all artists that were listed in the previous tracks. We will then fetch the general information and audio-features of all of the tracks contained within these albums. At this point we restart the crawling loop by fetching all albums of all artists of the fetched tracks.
+
+While doing all of this, we obviously make sure that no category, playlist, album, artist or track are fetched twice.
 
 ### Categories of interest
 
