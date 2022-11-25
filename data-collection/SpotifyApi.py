@@ -125,7 +125,7 @@ class Playlist:
 
     @staticmethod
     def from_response(data: dict):
-        print(data)
+        # print(data)
         return Playlist(
             data['collaborative'],
             data['description'],
@@ -382,6 +382,10 @@ class SpotifyApi:
         try:
             async with session.get(url, headers=({} | self.__get_auth_header())) as response:
                 content = await response.json()
+
+                if content is None:
+                    return (url, 'ERROR', response.text())
+
                 playlists = [Playlist.from_response(
                     p) for p in content['playlists']['items']]
                 return (url, 'OK', playlists)
@@ -395,7 +399,10 @@ class SpotifyApi:
         try:
             async with session.get(url, headers=({} | self.__get_auth_header())) as response:
                 content = await response.json()
-                print(content)
+
+                if content is None:
+                    return (url, 'ERROR', response.text())
+
                 tracks = [Track.from_response(t['track']) for t in content['items']]
                 return (url, 'OK', tracks)
         except Exception as e:
@@ -452,7 +459,7 @@ class SpotifyApi:
             print(e)
             return (url, 'ERROR', None)
 
-    async def fetch_many_audio_features(self, session: ClientSession, ids: MutableSequence[str]):
+    async def fetch_audio_features_for_tracks(self, session: ClientSession, ids: MutableSequence[str]):
         if len(ids) == 0:
             return []
         elif len(ids) > 100:
