@@ -4,6 +4,245 @@ import json
 import base64
 from typing import MutableSequence, Union
 
+
+def format_query(**kwargs):
+    return '&'.join([f'{key}={value}' for key, value in kwargs.items()])
+
+class AudioFeatures:
+    def __init__(self, track_id: str, danceability: float, energy: float, key: int, loudness: float, mode: int, speechiness: float, acousticness: float, instrumentalness: float, liveness: float, valence: float, tempo: float, time_signature: int):
+        self.track_id = track_id
+        self.danceability = danceability
+        self.energy = energy
+        self.key = key
+        self.loudness = loudness
+        self.mode = mode
+        self.speechiness = speechiness
+        self.acousticness = acousticness
+        self.instrumentalness = instrumentalness
+        self.liveness = liveness
+        self.valence = valence
+        self.tempo = tempo
+        self.time_signature = time_signature
+    
+    def __repr__(self):
+        return f'AudioFeatures({self.track_id})'
+    
+    def __str__(self):
+        str = 'AudioFeatures(\n'
+        for key, value in self.__dict__.items():
+            str += f'\t{key}: {value}\n'
+        str += ')'
+        return str
+
+    @staticmethod
+    def from_response(data: dict) -> 'AudioFeatures':
+        return AudioFeatures(
+            track_id=data['track_href'].split('/')[-1],
+            danceability=data['danceability'],
+            energy=data['energy'],
+            key=data['key'],
+            loudness=data['loudness'],
+            mode=data['mode'],
+            speechiness=data['speechiness'],
+            acousticness=data['acousticness'],
+            instrumentalness=data['instrumentalness'],
+            liveness=data['liveness'],
+            valence=data['valence'],
+            tempo=data['tempo'],
+            time_signature=data['time_signature']
+        )
+
+    
+
+class Artist:
+    def __init__(self, id: str, name: str, uri: str) -> None:
+        self.id = id
+        self.name = name
+        self.uri = uri
+
+    def __str__(self) -> str:
+        str = 'Artist(\n'
+        for key, value in self.__dict__.items():
+            str += f'\t{key}: {value}\n'
+        str += ')'
+        return str
+
+    def __repr__(self) -> str:
+        return f'Artist({self.id}, {self.name})'
+
+    @staticmethod
+    def from_response(data: dict):
+        return Artist(
+            data['id'],
+            data['name'],
+            data['uri'],
+        )
+
+class Album:
+    def __init__(self, id: str, name: str, uri: str, artists: list[Artist]):
+        self.id = id
+        self.name = name
+        self.uri = uri
+        self.artists = artists
+
+    def __str__(self) -> str:
+        str = 'Album(\n'
+        for key, value in self.__dict__.items():
+            str += f'\t{key}: {value}\n'
+        str += ')'
+        return str
+
+    def __repr__(self) -> str:
+        return f'Album({self.id}, {self.name})'
+
+    @staticmethod
+    def from_response(data: dict):
+        return Album(
+            data['id'],
+            data['name'],
+            data['uri'],
+            [Artist.from_response(artist) for artist in data['artists']]
+        )
+
+
+class Playlist:
+    def __init__(self, collaborative: bool, description: str, id: str, name: str, uri: str):
+        self.collaborative = collaborative
+        self.description = description
+        self.id = id
+        self.name = name
+        self.uri = uri
+
+    def __str__(self) -> str:
+        str = 'Playlist(\n'
+        for key, value in self.__dict__.items():
+            str += f'\t{key}: {value}\n'
+        str += ')'
+        return str
+
+    def __repr__(self) -> str:
+        return f'Playlist({self.id}, {self.name})'
+
+    @staticmethod
+    def from_response(data: dict):
+        print(data)
+        return Playlist(
+            data['collaborative'],
+            data['description'],
+            data['id'],
+            data['name'],
+            data['uri']
+        )
+
+
+class Track:
+    def __init__(self, id: str, album: Album, artists: list[Artist], disc_number: int, duration_ms: int, explicit: bool, is_local: bool, name: str, popularity: int, track_number: int, uri: str):
+        self.id = id
+        self.album = album
+        self.artists = artists
+        self.disc_number = disc_number
+        self.duration_ms = duration_ms
+        self.explicit = explicit
+        self.is_local = is_local
+        self.name = name
+        self.popularity = popularity
+        self.track_number = track_number
+        self.uri = uri
+
+    def __str__(self) -> str:
+        str = 'Track(\n'
+        for key, value in self.__dict__.items():
+            str += f'\t{key}: {value}\n'
+        str += ')'
+        return str
+
+    def __repr__(self) -> str:
+        return f'Track({self.id}, {self.name})'
+
+    @staticmethod
+    def from_response(data: dict):
+        return Track(
+            data['id'],
+            Album.from_response(data['album']),
+            [Artist.from_response(artist) for artist in data['artists']],
+            data['disc_number'],
+            data['duration_ms'],
+            data['explicit'],
+            data['is_local'],
+            data['name'],
+            data['popularity'],
+            data['track_number'],
+            data['uri']
+        )
+
+
+class TrackFeatures:
+    def __init__(self, id: str, acousticness: float, danceability: float, energy: float, instrumentalness: float, key: int, liveness: float, loudness: float, mode: int, speechiness: float, tempo: float, time_signature: int, valence: float) -> None:
+        self.id = id
+        self.acousticness = acousticness
+        self.danceability = danceability
+        self.energy = energy
+        self.instrumentalness = instrumentalness
+        self.key = key
+        self.liveness = liveness
+        self.loudness = loudness
+        self.mode = mode
+        self.speechiness = speechiness
+        self.tempo = tempo
+        self.time_signature = time_signature
+        self.valence = valence
+
+    def __str__(self) -> str:
+        str = 'Track(\n'
+        for key, value in self.__dict__.items():
+            str += f'\t{key}: {value}\n'
+        str += ')'
+        return str
+
+    def __repr__(self) -> str:
+        return f'Track({self.id}, {self.name})'
+
+    @staticmethod
+    def from_response(data: dict):
+        return Track(
+            data['id'],
+            data['acousticness'],
+            data['danceability'],
+            data['energy'],
+            data['instrumentalness'],
+            data['key'],
+            data['liveness'],
+            data['loudness'],
+            data['mode'],
+            data['speechiness'],
+            data['tempo'],
+            data['time_signature'],
+            data['valence']
+        )
+
+class TrackWithFeatures:
+    def __init__(self, track: Track, features: TrackFeatures) -> None:
+        self.track = track
+        self.features = features
+
+    def __str__(self) -> str:
+        str = 'TrackWithFeatures(\n'
+        for key, value in self.__dict__.items():
+            str += f'\t{key}: {value}\n'
+        str += ')'
+        return str
+
+    def __repr__(self) -> str:
+        return f'TrackWithFeatures({self.track.id}, {self.track.name})'
+
+    @staticmethod
+    def from_response(track_data: dict, features_data: dict):
+        return TrackWithFeatures(
+            Track.from_response(track_data),
+            TrackFeatures.from_response(features_data)
+        )
+
+
 class StoredToken:
     def __init__(self, access_token: str, token_type: str, expires_in: int, created_at: int) -> None:
         self.access_token = access_token
@@ -90,9 +329,11 @@ class SpotifyApi:
 
         if stored_token is None or stored_token.is_expired():
             if stored_token is None:
-                print('No stored token found. Retrieving a new one using client credentials.')
+                print(
+                    'No stored token found. Retrieving a new one using client credentials.')
             else:
-                print('Stored token is expired. Retrieving a new one using client credentials.')
+                print(
+                    'Stored token is expired. Retrieving a new one using client credentials.')
 
             (_, status, data) = await self.__authenticate_using_credentials(session)
             if status != 'OK':
@@ -114,7 +355,6 @@ class SpotifyApi:
         except:
             return None
 
-
     def __store_token(self, token: Union[dict, StoredToken]):
         with open('token.json', 'w') as f:
             if type(token) is StoredToken:
@@ -122,10 +362,46 @@ class SpotifyApi:
 
             json.dump(token, f)
 
-
     def __get_auth_header(self) -> dict:
         return {'Authorization': 'Bearer {}'.format(self.access_token)}
 
+    async def fetch_all_categories(self, session: ClientSession, offset=0, limit=20, locale='en_EN'):
+        url = 'https://api.spotify.com/v1/browse/categories?{}'.format(
+            format_query(offset=offset, limit=limit, locale=locale))
+        try:
+            async with session.get(url, headers=({} | self.__get_auth_header())) as response:
+                content = await response.json()
+                return (url, 'OK', content)
+        except Exception as e:
+            print(e)
+            return (url, 'ERROR', None)
+
+    async def fetch_all_playlists_in_category(self, session: ClientSession, category_id: str, offset=0, limit=20, country='US'):
+        url = 'https://api.spotify.com/v1/browse/categories/{}/playlists?{}'.format(
+            category_id, format_query(offset=offset, limit=limit, country=country))
+        try:
+            async with session.get(url, headers=({} | self.__get_auth_header())) as response:
+                content = await response.json()
+                playlists = [Playlist.from_response(
+                    p) for p in content['playlists']['items']]
+                return (url, 'OK', playlists)
+        except Exception as e:
+            print(e)
+            return (url, 'ERROR', None)
+
+    async def fetch_all_tracks_in_playlist(self, session: ClientSession, playlist_id: str, offset=0, limit=100):
+        url = 'https://api.spotify.com/v1/playlists/{}/tracks?{}'.format(
+            playlist_id, format_query(offset=offset, limit=limit))
+        try:
+            async with session.get(url, headers=({} | self.__get_auth_header())) as response:
+                content = await response.json()
+                print(content)
+                tracks = [Track.from_response(t['track']) for t in content['items']]
+                return (url, 'OK', tracks)
+        except Exception as e:
+            print('error')
+            print(e)
+            return (url, 'ERROR', None)
 
     async def fetch_track(self, session: ClientSession, id: str):
         url = 'https://api.spotify.com/v1/tracks/{}'.format(id)
@@ -180,7 +456,8 @@ class SpotifyApi:
         if len(ids) == 0:
             return []
         elif len(ids) > 100:
-            print('Warning: You passed more than 100 ids. Only the first 100 will be used.')
+            print(
+                'Warning: You passed more than 100 ids. Only the first 100 will be used.')
             ids = ids[:100]
 
         url = 'https://api.spotify.com/v1/audio-features'
@@ -190,11 +467,8 @@ class SpotifyApi:
         try:
             async with session.get(url, params=params, headers=({} | self.__get_auth_header())) as response:
                 content = await response.json()
-                return (url, 'OK', content)
+                features = [AudioFeatures.from_response(f) for f in content['audio_features']]
+                return (url, 'OK', features)
         except Exception as e:
             print(e)
             return (url, 'ERROR', None)
-
-
-
-
