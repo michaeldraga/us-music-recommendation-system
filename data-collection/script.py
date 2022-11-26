@@ -96,6 +96,7 @@ async def main():
             # print_list(playlists)
             # print(playlists_df.sort_values(by='name'))
 
+            visited_tracks = set()
             all_tracks = []
             for _, row in playlists_df.iterrows():
                 print(f'Fetching tracks for {row["name"]}')
@@ -106,7 +107,11 @@ async def main():
                     continue
 
                 for track in data:
+                    if visited_tracks.__contains__(track.id):
+                        print(f'Already visited {track.name}')
+                        continue 
                     all_tracks.append(track)
+                    visited_tracks.add(track.id)
 
             print('here')
             tracks_df = track_list_to_dataframe(all_tracks)
