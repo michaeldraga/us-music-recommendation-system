@@ -126,7 +126,7 @@ async def get_all_tracks_in_playlists(session: aiohttp.ClientSession, spotify: '
 
     tracks_df = track_list_to_dataframe(all_tracks)
     tracks_df.drop_duplicates(subset=['id'], inplace=True)
-    return playlists_df
+    return tracks_df
 
 async def get_all_artists(session: aiohttp.ClientSession, spotify: 'SpotifyApi', tracks_df: pd.DataFrame, cache=False) -> pd.DataFrame:
     all_artists = []

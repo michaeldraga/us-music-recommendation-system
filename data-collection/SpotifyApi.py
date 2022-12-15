@@ -34,9 +34,12 @@ class SpotifyApi:
         }
     
     def get_from_cache(self, key: str, id: str):
-        if id in self.cache[key] and time.time() - self.cache[key][id]['timestamp'] < 60 * 60 * 24:
-                self.cache_hits += 1
-                return self.cache[key][id]['value']
+        try:
+            if id in self.cache[key] and time.time() - self.cache[key][id]['timestamp'] < 60 * 60 * 24:
+                    self.cache_hits += 1
+                    return self.cache[key][id]['value']
+        except KeyError:
+            pass
         return None
 
     def save_cache(self):
@@ -509,11 +512,11 @@ class SpotifyApi:
 
     async def fetch_all_playlists_in_category(self, session: ClientSession, category_id: str, offset=0, limit=20, country='US'):
         # return cached playlists if available
-        if category_id in self.cache['categories']:
-            print(self.get_from_cache('categories', category_id))
-            for playlist_id in [self.get_from_cache('playlists', playlist_id) for playlist_id in self.get_from_cache('categories', category_id)]:
-                print(self.get_from_cache('playlists', playlist_id))
-            return (None, 'OK', [SpotifyApi.Playlist.from_dict(self.get_from_cache('playlists', playlist_id)) for playlist_id in self.get_from_cache('categories', category_id)])
+        # if category_id in self.cache['categories']:
+        #     print(self.get_from_cache('categories', category_id))
+        #     for playlist_id in [self.get_from_cache('playlists', playlist['id']) for playlist in self.get_from_cache('categories', category_id)]:
+        #         print(self.get_from_cache('playlists', playlist_id))
+        #     return (None, 'OK', [SpotifyApi.Playlist.from_dict(self.get_from_cache('playlists', playlist_id)) for playlist_id in self.get_from_cache('categories', category_id)])
 
         url = 'https://api.spotify.com/v1/browse/categories/{}/playlists?{}'.format(
             category_id, format_query(offset=offset, limit=limit, country=country))
@@ -538,7 +541,7 @@ class SpotifyApi:
         # return cached tracks if available
         if playlist_id in self.cache['playlists']:
             print('cache hit playlist')
-            return (None, 'OK', [SpotifyApi.Track.from_dict(self.get_from_cache('tracks', track_id)) for track_id in self.cache['playlists'][playlist_id]])
+            return (None, 'OK', [SpotifyApi.Track.from_dict(self.get_from_cache('tracks', track_id)) for track_id in self.get_from_cache('playlists', playlist_id)])
 
         url = 'https://api.spotify.com/v1/playlists/{}/tracks?{}'.format(
             playlist_id, format_query(offset=offset, limit=limit))
@@ -669,6 +672,11 @@ class SpotifyApi:
         try:
             async with session.get(url, headers=({} | self.__get_auth_header())) as response:
                 content = await response.json()
+
+                if content is None:
+                    print(response.status)
+                    return (url, 'ERROR', response.text())
+
                 return (url, 'OK', content)
         except Exception as e:
             print(e)
