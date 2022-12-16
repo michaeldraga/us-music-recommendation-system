@@ -3,7 +3,7 @@ import time
 import json
 import base64
 from typing import MutableSequence, Union
-
+import traceback 
 
 def format_query(**kwargs):
     return '&'.join([f'{key}={value}' for key, value in kwargs.items()])
@@ -23,7 +23,8 @@ class SpotifyApi:
         'artists': {},
         'playlists': {},
         'tracks': {},
-        'categories': {}
+        'categories': {},
+        'audio_features': {},
     }
     cache_hits = 0
 
@@ -96,8 +97,41 @@ class SpotifyApi:
                 tempo=data['tempo'],
                 time_signature=data['time_signature']
             )
-
         
+        def to_dict(self):
+            return {
+                'track_id': self.track_id,
+                'danceability': self.danceability,
+                'energy': self.energy,
+                'key': self.key,
+                'loudness': self.loudness,
+                'mode': self.mode,
+                'speechiness': self.speechiness,
+                'acousticness': self.acousticness,
+                'instrumentalness': self.instrumentalness,
+                'liveness': self.liveness,
+                'valence': self.valence,
+                'tempo': self.tempo,
+                'time_signature': self.time_signature
+            }
+
+        @staticmethod
+        def from_dict(data: dict) -> 'SpotifyApi.AudioFeatures':
+            return SpotifyApi.AudioFeatures(
+                track_id=data['track_id'],
+                danceability=data['danceability'],
+                energy=data['energy'],
+                key=data['key'],
+                loudness=data['loudness'],
+                mode=data['mode'],
+                speechiness=data['speechiness'],
+                acousticness=data['acousticness'],
+                instrumentalness=data['instrumentalness'],
+                liveness=data['liveness'],
+                valence=data['valence'],
+                tempo=data['tempo'],
+                time_signature=data['time_signature']
+            )
 
     class Artist:
         def __init__(self, id: str, name: str, genres: list[str], uri: str) -> None:
@@ -122,7 +156,7 @@ class SpotifyApi:
             return SpotifyApi.Artist(
                 data['id'],
                 data['name'],
-                None,
+                data['genres'],
                 data['uri'],
             )
 
@@ -353,7 +387,7 @@ class SpotifyApi:
                 data['time_signature'],
                 data['valence']
             )
-
+        
     class TrackWithFeatures:
         def __init__(self, track: 'SpotifyApi.Track', features: 'SpotifyApi.TrackFeatures') -> None:
             self.track = track
@@ -530,11 +564,12 @@ class SpotifyApi:
                 playlists = [SpotifyApi.Playlist.from_response(
                     p) for p in content['playlists']['items']]
                 
-                self.save_to_cache('categories', category_id, [p.to_dict() for p in playlists])
+                # self.save_to_cache('categories', category_id, [p.to_dict() for p in playlists])
 
                 return (url, 'OK', playlists)
         except Exception as e:
             print(e)
+            print(''.join(traceback.format_tb(e.__traceback__)))
             return (url, 'ERROR', None)
 
     async def fetch_all_tracks_in_playlist(self, session: ClientSession, playlist_id: str, offset=0, limit=100):
@@ -574,8 +609,8 @@ class SpotifyApi:
                 return (url, 'OK', tracks)
 
         except Exception as e:
-            print('error')
             print(e)
+            print(''.join(traceback.format_tb(e.__traceback__)))
             return (url, 'ERROR', None)
 
     async def fetch_track(self, session: ClientSession, id: str):
@@ -586,6 +621,7 @@ class SpotifyApi:
                 return (url, 'OK', content)
         except Exception as e:
             print(e)
+            print(''.join(traceback.format_tb(e.__traceback__)))
             return (url, 'ERROR', None)
 
     async def fetch_many_tracks(self, session: ClientSession, ids: MutableSequence[str]):
@@ -597,7 +633,7 @@ class SpotifyApi:
 
         url = 'https://api.spotify.com/v1/tracks'
         params = {
-            'ids': ','.join(filter(lambda id: id not in self.cache['tracks'] ,ids))
+            'ids': ','.join(list(filter(lambda id: id not in self.cache['tracks'] ,ids)))
         }
         try:
             async with session.get(url, params=params, headers=({} | self.__get_auth_header())) as response:
@@ -621,6 +657,7 @@ class SpotifyApi:
                 return (url, 'OK', [self.cache['tracks'][track_id] for track_id in ids])
         except Exception as e:
             print(e)
+            print(''.join(traceback.format_tb(e.__traceback__)))
             return (url, 'ERROR', None)
     
     async def fetch_artist(self, session: ClientSession, id: str):
@@ -635,26 +672,38 @@ class SpotifyApi:
 
     async def fetch_many_artists(self, session: ClientSession, ids: MutableSequence[str]):
         if len(ids) == 0:
-            return []
+            return (None, 'OK', [])
         elif len(ids) > 50:
             print('Warning: You passed more than 50 ids. Only the first 50 will be used.')
             ids = ids[:50]
+        
+        # ids_to_fetch = list(filter(lambda id: id not in self.cache['artists'], ids))
+        ids_to_fetch = ids
+
+        # if ids_to_fetch == []:
+        #     return (None, 'OK', [SpotifyApi.Artist.from_dict(self.get_from_cache('artists', id)) for id in ids])
 
         url = 'https://api.spotify.com/v1/artists'
         params = {
-            'ids': ','.join(filter(lambda id: id not in self.cache['artists'] ,ids))
+            'ids': ','.join(ids_to_fetch)
         }
         try:
             async with session.get(url, params=params, headers=({} | self.__get_auth_header())) as response:
                 content = await response.json()
+
+                if content is None:
+                    print(response)
+                    return (url, 'ERROR', response.text())
+                
                 artists = [SpotifyApi.Artist.from_response(a) for a in content['artists']]
 
                 for artist in artists:
                     self.save_to_cache('artists', artist.id, artist.to_dict())
                 
-                return (url, 'OK', [SpotifyApi.Artist.from_dict(self.cache['artists'][artist_id]) for artist_id in ids])
+                return (url, 'OK', [SpotifyApi.Artist.from_dict(self.get_from_cache('artists', id)) for id in ids])
         except Exception as e:
             print(e)
+            print(''.join(traceback.format_tb(e.__traceback__)))
             return (url, 'ERROR', None)
 
     async def fetch_audio_analysis(self, session: ClientSession, id: str):
@@ -665,6 +714,7 @@ class SpotifyApi:
                 return (url, 'OK', content)
         except Exception as e:
             print(e)
+            print(''.join(traceback.format_tb(e.__traceback__)))
             return (url, 'ERROR', None)
 
     async def fetch_audio_features(self, session: ClientSession, id: str):
@@ -690,15 +740,25 @@ class SpotifyApi:
                 'Warning: You passed more than 100 ids. Only the first 100 will be used.')
             ids = ids[:100]
 
+        ids_to_fetch = list(filter(lambda id: id not in self.cache['audio_features'], ids))
+
+        if ids_to_fetch == []:
+            return (None, 'OK', [SpotifyApi.AudioFeatures.from_dict(self.get_from_cache('audio_features', id)) for id in ids])
+
         url = 'https://api.spotify.com/v1/audio-features'
         params = {
-            'ids': ','.join(ids)
+            'ids': ','.join(ids_to_fetch)
         }
         try:
             async with session.get(url, params=params, headers=({} | self.__get_auth_header())) as response:
                 content = await response.json()
                 features = [SpotifyApi.AudioFeatures.from_response(f) for f in content['audio_features']]
-                return (url, 'OK', features)
+                
+                for feature in features:
+                    self.save_to_cache('audio_features', feature.track_id, feature.to_dict())
+                
+                return (url, 'OK', [SpotifyApi.AudioFeatures.from_dict(self.get_from_cache('audio_features', id)) for id in ids])
         except Exception as e:
             print(e)
+            print(''.join(traceback.format_tb(e.__traceback__)))
             return (url, 'ERROR', None)
