@@ -1,207 +1,55 @@
-eps: 0.1, min_samples: 1, metric: cosine, score: -0.5425835577416028, n_labels: 1387
-eps: 0.1, min_samples: 2, metric: cosine, score: -0.4354802195919732, n_labels: 148
-eps: 0.1, min_samples: 3, metric: cosine, score: -0.32072462974138455, n_labels: 43
-eps: 0.1, min_samples: 4, metric: cosine, score: -0.2475743271653818, n_labels: 20
-eps: 0.1, min_samples: 5, metric: cosine, score: -0.24288130671734895, n_labels: 16
-eps: 0.1, min_samples: 6, metric: cosine, score: -0.18666665388555662, n_labels: 7
-eps: 0.1, min_samples: 7, metric: cosine, score: -0.16526061142469683, n_labels: 7
-eps: 0.1, min_samples: 8, metric: cosine, score: -0.15076273547249175, n_labels: 7
-eps: 0.1, min_samples: 9, metric: cosine, score: -0.03972979452519108, n_labels: 3
-eps: 0.2, min_samples: 1, metric: cosine, score: -0.016752394851375432, n_labels: 4
-eps: 0.2, min_samples: 2, metric: cosine, score: 0.12282222152018525, n_labels: 2
-eps: 0.2, min_samples: 3, metric: cosine, score: 0.12282222152018525, n_labels: 2
-eps: 0.2, min_samples: 4, metric: cosine, score: 0.12282222152018525, n_labels: 2
-eps: 0.2, min_samples: 5, metric: cosine, score: 0.11478628655669385, n_labels: 2
-eps: 0.2, min_samples: 6, metric: cosine, score: 0.10396592823002669, n_labels: 2
-eps: 0.2, min_samples: 7, metric: cosine, score: 0.10396592823002669, n_labels: 2
-eps: 0.2, min_samples: 8, metric: cosine, score: 0.10396592823002669, n_labels: 2
-eps: 0.2, min_samples: 9, metric: cosine, score: 0.10396592823002669, n_labels: 2
-eps: 0.3, min_samples: 1, metric: cosine, score: 2, n_labels: 1
-eps: 0.3, min_samples: 2, metric: cosine, score: 2, n_labels: 1
-eps: 0.3, min_samples: 3, metric: cosine, score: 2, n_labels: 1
-eps: 0.3, min_samples: 4, metric: cosine, score: 2, n_labels: 1
-eps: 0.3, min_samples: 5, metric: cosine, score: 2, n_labels: 1
-eps: 0.3, min_samples: 6, metric: cosine, score: 2, n_labels: 1
-eps: 0.3, min_samples: 7, metric: cosine, score: 2, n_labels: 1
-eps: 0.3, min_samples: 8, metric: cosine, score: 2, n_labels: 1
-eps: 0.3, min_samples: 9, metric: cosine, score: 2, n_labels: 1
-eps: 0.4, min_samples: 1, metric: cosine, score: 2, n_labels: 1
-eps: 0.4, min_samples: 2, metric: cosine, score: 2, n_labels: 1
-eps: 0.4, min_samples: 3, metric: cosine, score: 2, n_labels: 1
-eps: 0.4, min_samples: 4, metric: cosine, score: 2, n_labels: 1
-eps: 0.4, min_samples: 5, metric: cosine, score: 2, n_labels: 1
-eps: 0.4, min_samples: 6, metric: cosine, score: 2, n_labels: 1
-eps: 0.4, min_samples: 7, metric: cosine, score: 2, n_labels: 1
-eps: 0.4, min_samples: 8, metric: cosine, score: 2, n_labels: 1
-eps: 0.4, min_samples: 9, metric: cosine, score: 2, n_labels: 1
-eps: 0.5, min_samples: 1, metric: cosine, score: 2, n_labels: 1
-eps: 0.5, min_samples: 2, metric: cosine, score: 2, n_labels: 1
-eps: 0.5, min_samples: 3, metric: cosine, score: 2, n_labels: 1
-eps: 0.5, min_samples: 4, metric: cosine, score: 2, n_labels: 1
-eps: 0.5, min_samples: 5, metric: cosine, score: 2, n_labels: 1
-eps: 0.5, min_samples: 6, metric: cosine, score: 2, n_labels: 1
-eps: 0.5, min_samples: 7, metric: cosine, score: 2, n_labels: 1
-eps: 0.5, min_samples: 8, metric: cosine, score: 2, n_labels: 1
-eps: 0.5, min_samples: 9, metric: cosine, score: 2, n_labels: 1
-eps: 0.6, min_samples: 1, metric: cosine, score: 2, n_labels: 1
-eps: 0.6, min_samples: 2, metric: cosine, score: 2, n_labels: 1
-eps: 0.6, min_samples: 3, metric: cosine, score: 2, n_labels: 1
-eps: 0.6, min_samples: 4, metric: cosine, score: 2, n_labels: 1
-eps: 0.6, min_samples: 5, metric: cosine, score: 2, n_labels: 1
-eps: 0.6, min_samples: 6, metric: cosine, score: 2, n_labels: 1
-eps: 0.6, min_samples: 7, metric: cosine, score: 2, n_labels: 1
-eps: 0.6, min_samples: 8, metric: cosine, score: 2, n_labels: 1
-eps: 0.6, min_samples: 9, metric: cosine, score: 2, n_labels: 1
-eps: 0.7, min_samples: 1, metric: cosine, score: 2, n_labels: 1
-eps: 0.7, min_samples: 2, metric: cosine, score: 2, n_labels: 1
-eps: 0.7, min_samples: 3, metric: cosine, score: 2, n_labels: 1
-eps: 0.7, min_samples: 4, metric: cosine, score: 2, n_labels: 1
-eps: 0.7, min_samples: 5, metric: cosine, score: 2, n_labels: 1
-eps: 0.7, min_samples: 6, metric: cosine, score: 2, n_labels: 1
-eps: 0.7, min_samples: 7, metric: cosine, score: 2, n_labels: 1
-eps: 0.7, min_samples: 8, metric: cosine, score: 2, n_labels: 1
-eps: 0.7, min_samples: 9, metric: cosine, score: 2, n_labels: 1
-eps: 0.8, min_samples: 1, metric: cosine, score: 2, n_labels: 1
-eps: 0.8, min_samples: 2, metric: cosine, score: 2, n_labels: 1
-eps: 0.8, min_samples: 3, metric: cosine, score: 2, n_labels: 1
-eps: 0.8, min_samples: 4, metric: cosine, score: 2, n_labels: 1
-eps: 0.8, min_samples: 5, metric: cosine, score: 2, n_labels: 1
-eps: 0.8, min_samples: 6, metric: cosine, score: 2, n_labels: 1
-eps: 0.8, min_samples: 7, metric: cosine, score: 2, n_labels: 1
-eps: 0.8, min_samples: 8, metric: cosine, score: 2, n_labels: 1
-eps: 0.8, min_samples: 9, metric: cosine, score: 2, n_labels: 1
-eps: 0.9, min_samples: 1, metric: cosine, score: 2, n_labels: 1
-eps: 0.9, min_samples: 2, metric: cosine, score: 2, n_labels: 1
-eps: 0.9, min_samples: 3, metric: cosine, score: 2, n_labels: 1
-eps: 0.9, min_samples: 4, metric: cosine, score: 2, n_labels: 1
-eps: 0.9, min_samples: 5, metric: cosine, score: 2, n_labels: 1
-eps: 0.9, min_samples: 6, metric: cosine, score: 2, n_labels: 1
-eps: 0.9, min_samples: 7, metric: cosine, score: 2, n_labels: 1
-eps: 0.9, min_samples: 8, metric: cosine, score: 2, n_labels: 1
-eps: 0.9, min_samples: 9, metric: cosine, score: 2, n_labels: 1
-eps: 0.1, min_samples: 1, metric: l2, score: 0.002341045487800202, n_labels: 52750
-eps: 0.1, min_samples: 2, metric: l2, score: -0.5109036322773449, n_labels: 67
-eps: 0.1, min_samples: 3, metric: l2, score: 2, n_labels: 1
-eps: 0.1, min_samples: 4, metric: l2, score: 2, n_labels: 1
-eps: 0.1, min_samples: 5, metric: l2, score: 2, n_labels: 1
-eps: 0.1, min_samples: 6, metric: l2, score: 2, n_labels: 1
-eps: 0.1, min_samples: 7, metric: l2, score: 2, n_labels: 1
-eps: 0.1, min_samples: 8, metric: l2, score: 2, n_labels: 1
-eps: 0.1, min_samples: 9, metric: l2, score: 2, n_labels: 1
-eps: 0.2, min_samples: 1, metric: l2, score: 0.006061945522514202, n_labels: 52630
-eps: 0.2, min_samples: 2, metric: l2, score: -0.5637575191372982, n_labels: 187
-eps: 0.2, min_samples: 3, metric: l2, score: 2, n_labels: 1
-eps: 0.2, min_samples: 4, metric: l2, score: 2, n_labels: 1
-eps: 0.2, min_samples: 5, metric: l2, score: 2, n_labels: 1
-eps: 0.2, min_samples: 6, metric: l2, score: 2, n_labels: 1
-eps: 0.2, min_samples: 7, metric: l2, score: 2, n_labels: 1
-eps: 0.2, min_samples: 8, metric: l2, score: 2, n_labels: 1
-eps: 0.2, min_samples: 9, metric: l2, score: 2, n_labels: 1
-eps: 0.3, min_samples: 1, metric: l2, score: 0.009299400716266606, n_labels: 52492
-eps: 0.3, min_samples: 2, metric: l2, score: -0.5863998487147004, n_labels: 323
-eps: 0.3, min_samples: 3, metric: l2, score: -0.11788446057109378, n_labels: 3
-eps: 0.3, min_samples: 4, metric: l2, score: 2, n_labels: 1
-eps: 0.3, min_samples: 5, metric: l2, score: 2, n_labels: 1
-eps: 0.3, min_samples: 6, metric: l2, score: 2, n_labels: 1
-eps: 0.3, min_samples: 7, metric: l2, score: 2, n_labels: 1
-eps: 0.3, min_samples: 8, metric: l2, score: 2, n_labels: 1
-eps: 0.3, min_samples: 9, metric: l2, score: 2, n_labels: 1
-eps: 0.4, min_samples: 1, metric: l2, score: 0.013203387047247729, n_labels: 52206
-eps: 0.4, min_samples: 2, metric: l2, score: -0.6037459666876253, n_labels: 560
-eps: 0.4, min_samples: 3, metric: l2, score: -0.37649835998349174, n_labels: 29
-eps: 0.4, min_samples: 4, metric: l2, score: 0.12916032221043416, n_labels: 7
-eps: 0.4, min_samples: 5, metric: l2, score: 0.20346548784868268, n_labels: 3
-eps: 0.4, min_samples: 6, metric: l2, score: 2, n_labels: 1
-eps: 0.4, min_samples: 7, metric: l2, score: 2, n_labels: 1
-eps: 0.4, min_samples: 8, metric: l2, score: 2, n_labels: 1
-eps: 0.4, min_samples: 9, metric: l2, score: 2, n_labels: 1
-eps: 0.5, min_samples: 1, metric: l2, score: 0.02008419062192181, n_labels: 51170
-eps: 0.5, min_samples: 2, metric: l2, score: -0.6004479499436807, n_labels: 1239
-eps: 0.5, min_samples: 3, metric: l2, score: -0.5168954240114488, n_labels: 166
-eps: 0.5, min_samples: 4, metric: l2, score: -0.4262201025047604, n_labels: 47
-eps: 0.5, min_samples: 5, metric: l2, score: -0.2800548559941462, n_labels: 16
-eps: 0.5, min_samples: 6, metric: l2, score: 0.12329695059419853, n_labels: 10
-eps: 0.5, min_samples: 7, metric: l2, score: 0.1427369002275129, n_labels: 5
-eps: 0.5, min_samples: 8, metric: l2, score: 0.14174595076721386, n_labels: 4
-eps: 0.5, min_samples: 9, metric: l2, score: 0.18134164328486807, n_labels: 2
-eps: 0.6, min_samples: 1, metric: l2, score: 0.022289940401210497, n_labels: 48218
-eps: 0.6, min_samples: 2, metric: l2, score: -0.5524869162107049, n_labels: 2474
-eps: 0.6, min_samples: 3, metric: l2, score: -0.5587980466496282, n_labels: 580
-eps: 0.6, min_samples: 4, metric: l2, score: -0.5248648607588422, n_labels: 205
-eps: 0.6, min_samples: 5, metric: l2, score: -0.47172129771168747, n_labels: 87
-eps: 0.6, min_samples: 6, metric: l2, score: -0.43072817427603005, n_labels: 46
-eps: 0.6, min_samples: 7, metric: l2, score: -0.3096989075439839, n_labels: 20
-eps: 0.6, min_samples: 8, metric: l2, score: -0.29165234027612885, n_labels: 16
-eps: 0.6, min_samples: 9, metric: l2, score: 0.07252512325215286, n_labels: 7
-eps: 0.7, min_samples: 1, metric: l2, score: -0.02738212992628761, n_labels: 42277
-eps: 0.7, min_samples: 2, metric: l2, score: -0.5054563637850638, n_labels: 3221
-eps: 0.7, min_samples: 3, metric: l2, score: -0.5439916869470215, n_labels: 965
-eps: 0.7, min_samples: 4, metric: l2, score: -0.5354686130754726, n_labels: 387
-eps: 0.7, min_samples: 5, metric: l2, score: -0.515979894776916, n_labels: 200
-eps: 0.7, min_samples: 6, metric: l2, score: -0.5019422449950982, n_labels: 125
-eps: 0.7, min_samples: 7, metric: l2, score: -0.48281019825044375, n_labels: 85
-eps: 0.7, min_samples: 8, metric: l2, score: -0.4664116120000492, n_labels: 66
-eps: 0.7, min_samples: 9, metric: l2, score: -0.44317198057464735, n_labels: 43
-eps: 0.8, min_samples: 1, metric: l2, score: -0.1385202133713114, n_labels: 33906
-eps: 0.8, min_samples: 2, metric: l2, score: -0.49264433475724173, n_labels: 3058
-eps: 0.8, min_samples: 3, metric: l2, score: -0.5263811011537373, n_labels: 920
-eps: 0.8, min_samples: 4, metric: l2, score: -0.5242402552357106, n_labels: 423
-eps: 0.8, min_samples: 5, metric: l2, score: -0.5095577449026637, n_labels: 250
-eps: 0.8, min_samples: 6, metric: l2, score: -0.4908681885385801, n_labels: 147
-eps: 0.8, min_samples: 7, metric: l2, score: -0.47639020296931434, n_labels: 109
-eps: 0.8, min_samples: 8, metric: l2, score: -0.4667592626179069, n_labels: 99
-eps: 0.8, min_samples: 9, metric: l2, score: -0.44925212328792447, n_labels: 62
-eps: 0.9, min_samples: 1, metric: l2, score: -0.2664311871943567, n_labels: 25707
-eps: 0.9, min_samples: 2, metric: l2, score: -0.5053462237808289, n_labels: 2510
-eps: 0.9, min_samples: 3, metric: l2, score: -0.5187792408930829, n_labels: 750
-eps: 0.9, min_samples: 4, metric: l2, score: -0.47454807815364114, n_labels: 326
-eps: 0.9, min_samples: 5, metric: l2, score: -0.4534866247795986, n_labels: 204
-eps: 0.9, min_samples: 6, metric: l2, score: -0.44581745781732, n_labels: 150
-eps: 0.9, min_samples: 7, metric: l2, score: -0.41886239985342605, n_labels: 92
-eps: 0.9, min_samples: 8, metric: l2, score: -0.41485028068295265, n_labels: 70
-eps: 0.9, min_samples: 9, metric: l2, score: -0.4001747694923235, n_labels: 65
-eps: 1, min_samples: 1, metric: l2, score: -0.3660929284862138, n_labels: 18660
-eps: 1, min_samples: 2, metric: l2, score: -0.5064064371876646, n_labels: 1856
-eps: 1, min_samples: 3, metric: l2, score: -0.49258273754345866, n_labels: 585
-eps: 1, min_samples: 4, metric: l2, score: -0.4753031944229993, n_labels: 268
-eps: 1, min_samples: 5, metric: l2, score: -0.44859815917813595, n_labels: 154
-eps: 1, min_samples: 6, metric: l2, score: -0.4053855302382755, n_labels: 98
-eps: 1, min_samples: 7, metric: l2, score: -0.35696689910847323, n_labels: 83
-eps: 1, min_samples: 8, metric: l2, score: -0.340950115321856, n_labels: 68
-eps: 1, min_samples: 9, metric: l2, score: -0.33357084567247636, n_labels: 55
-eps: 2, min_samples: 1, metric: l2, score: -0.2517700465663125, n_labels: 891
-eps: 2, min_samples: 2, metric: l2, score: -0.09971787370758835, n_labels: 106
-eps: 2, min_samples: 3, metric: l2, score: -0.01904588416317019, n_labels: 40
-eps: 2, min_samples: 4, metric: l2, score: 0.02707372414853966, n_labels: 26
-eps: 2, min_samples: 5, metric: l2, score: 0.006518123265293571, n_labels: 17
-eps: 2, min_samples: 6, metric: l2, score: 0.02873242290910664, n_labels: 15
-eps: 2, min_samples: 7, metric: l2, score: 0.031276743524216666, n_labels: 14
-eps: 2, min_samples: 8, metric: l2, score: 0.04247211874166487, n_labels: 11
-eps: 2, min_samples: 9, metric: l2, score: 0.0407094050219402, n_labels: 11
-eps: 3, min_samples: 1, metric: l2, score: 0.10552272742472711, n_labels: 81
-eps: 3, min_samples: 2, metric: l2, score: 0.29285689897653056, n_labels: 9
-eps: 3, min_samples: 3, metric: l2, score: 0.30202490602997034, n_labels: 6
-eps: 3, min_samples: 4, metric: l2, score: 0.38906288705039244, n_labels: 5
-eps: 3, min_samples: 5, metric: l2, score: 0.3907784118201237, n_labels: 6
-eps: 3, min_samples: 6, metric: l2, score: 0.39481920957827915, n_labels: 3
-eps: 3, min_samples: 7, metric: l2, score: 0.3944890225844497, n_labels: 3
-eps: 3, min_samples: 8, metric: l2, score: 0.39419722287577835, n_labels: 3
-eps: 3, min_samples: 9, metric: l2, score: 0.39411354275526894, n_labels: 3
-eps: 4, min_samples: 1, metric: l2, score: 0.39844427664325205, n_labels: 7
-eps: 4, min_samples: 2, metric: l2, score: 0.4044833535472004, n_labels: 3
-eps: 4, min_samples: 3, metric: l2, score: 0.4044833535472004, n_labels: 3
-eps: 4, min_samples: 4, metric: l2, score: 0.4041953941843262, n_labels: 3
-eps: 4, min_samples: 5, metric: l2, score: 0.40347260561815856, n_labels: 3
-eps: 4, min_samples: 6, metric: l2, score: 0.40347260561815856, n_labels: 3
-eps: 4, min_samples: 7, metric: l2, score: 0.4039220316256365, n_labels: 3
-eps: 4, min_samples: 8, metric: l2, score: 0.40367317707508005, n_labels: 3
-eps: 4, min_samples: 9, metric: l2, score: 0.4032880953109427, n_labels: 3
-eps: 5, min_samples: 1, metric: l2, score: 0.6355606287511583, n_labels: 2
-eps: 5, min_samples: 2, metric: l2, score: 0.6355606287511583, n_labels: 2
-eps: 5, min_samples: 3, metric: l2, score: 0.6355606287511583, n_labels: 2
-eps: 5, min_samples: 4, metric: l2, score: 0.6355606287511583, n_labels: 2
-eps: 5, min_samples: 5, metric: l2, score: 0.6355606287511583, n_labels: 2
-eps: 5, min_samples: 6, metric: l2, score: 0.6355606287511583, n_labels: 2
-eps: 5, min_samples: 7, metric: l2, score: 0.6355606287511583, n_labels: 2
-eps: 5, min_samples: 8, metric: l2, score: 0.6355606287511583, n_labels: 2
-eps: 5, min_samples: 9, metric: l2, score: 0.6355606287511583, n_labels: 2
+eps: 0.76, min_samples: 10, metric: euclidean, score: -0.4609036638245434, n_labels: 58, artist_density: 0.4576234788979438, album_density: 0.7427545832606731
+eps: 0.77, min_samples: 10, metric: euclidean, score: -0.46391369118722825, n_labels: 65, artist_density: 0.47545142323457257, album_density: 0.7534088933792469
+eps: 0.78, min_samples: 10, metric: euclidean, score: -0.45798166751023894, n_labels: 60, artist_density: 0.4513887427691664, album_density: 0.7204272736548832
+eps: 0.79, min_samples: 10, metric: euclidean, score: -0.4568112573615191, n_labels: 54, artist_density: 0.4362534049563196, album_density: 0.7328073372014386
+eps: 0.8, min_samples: 10, metric: euclidean, score: -0.44042425499781224, n_labels: 47, artist_density: 0.4679937406284937, album_density: 0.7493372334154249
+eps: 0.81, min_samples: 10, metric: euclidean, score: -0.4380635409874648, n_labels: 50, artist_density: 0.449950531546991, album_density: 0.7551129466212062
+eps: 0.8200000000000001, min_samples: 10, metric: euclidean, score: -0.43212605885280325, n_labels: 51, artist_density: 0.4776419913098175, album_density: 0.771541475114976
+eps: 0.83, min_samples: 10, metric: euclidean, score: -0.44198231791560977, n_labels: 59, artist_density: 0.47808438046099644, album_density: 0.7679597308227392
+eps: 0.84, min_samples: 10, metric: euclidean, score: -0.44376754419259284, n_labels: 59, artist_density: 0.4838645083895832, album_density: 0.7627043894701286
+eps: 0.85, min_samples: 10, metric: euclidean, score: -0.4379943187041913, n_labels: 56, artist_density: 0.4834089151210077, album_density: 0.7537706116093543
+eps: 0.86, min_samples: 10, metric: euclidean, score: -0.4290908240874309, n_labels: 56, artist_density: 0.4848678615846619, album_density: 0.7485225101958523
+eps: 0.87, min_samples: 10, metric: euclidean, score: -0.41921807986624615, n_labels: 55, artist_density: 0.4756374478261769, album_density: 0.7290785304285715
+eps: 0.88, min_samples: 10, metric: euclidean, score: -0.4138512678974173, n_labels: 54, artist_density: 0.47686923016240185, album_density: 0.7317573014342896
+eps: 0.89, min_samples: 10, metric: euclidean, score: -0.3920703891124144, n_labels: 48, artist_density: 0.48652136660197653, album_density: 0.7537656413547742
+eps: 0.9, min_samples: 10, metric: euclidean, score: -0.3780914180145706, n_labels: 51, artist_density: 0.5248237010089759, album_density: 0.7581958036539721
+eps: 0.91, min_samples: 10, metric: euclidean, score: -0.37902351035297166, n_labels: 49, artist_density: 0.5165856601202228, album_density: 0.772345072265538
+eps: 0.92, min_samples: 10, metric: euclidean, score: -0.39102122918117416, n_labels: 50, artist_density: 0.5147010801235353, album_density: 0.7701323508643505
+eps: 0.9299999999999999, min_samples: 10, metric: euclidean, score: -0.38729080459981374, n_labels: 51, artist_density: 0.5135696894073252, album_density: 0.7747576685567058
+eps: 0.94, min_samples: 10, metric: euclidean, score: -0.38257457461458305, n_labels: 50, artist_density: 0.5177557191279564, album_density: 0.7778595329125203
+eps: 0.95, min_samples: 10, metric: euclidean, score: -0.34713884595745437, n_labels: 47, artist_density: 0.5237030245622863, album_density: 0.7665494075904116
+eps: 0.96, min_samples: 10, metric: euclidean, score: -0.3034549073165006, n_labels: 36, artist_density: 0.5218800498629319, album_density: 0.7716804468028178
+eps: 0.97, min_samples: 10, metric: euclidean, score: -0.29942522426347196, n_labels: 41, artist_density: 0.5343032302791587, album_density: 0.7660527726416062
+eps: 0.98, min_samples: 10, metric: euclidean, score: -0.28725920170418473, n_labels: 38, artist_density: 0.568217104734375, album_density: 0.7960513805728048
+eps: 0.99, min_samples: 10, metric: euclidean, score: -0.28566741053401273, n_labels: 37, artist_density: 0.5572965316505177, album_density: 0.7749177506079646
+eps: 1.0, min_samples: 10, metric: euclidean, score: -0.2883299264918327, n_labels: 40, artist_density: 0.5778684881316275, album_density: 0.781528674657366
+eps: 1.01, min_samples: 10, metric: euclidean, score: -0.30299609801854616, n_labels: 47, artist_density: 0.5554666144331224, album_density: 0.7881904008262949
+eps: 1.02, min_samples: 10, metric: euclidean, score: -0.3358929663376695, n_labels: 43, artist_density: 0.5373873820889074, album_density: 0.7905849259079983
+eps: 1.03, min_samples: 10, metric: euclidean, score: -0.32088766874147584, n_labels: 38, artist_density: 0.5324888557134954, album_density: 0.7934503930889378
+eps: 1.04, min_samples: 10, metric: euclidean, score: -0.319609271510381, n_labels: 41, artist_density: 0.5319756785583265, album_density: 0.8022564161339896
+eps: 1.05, min_samples: 10, metric: euclidean, score: -0.3099267372409909, n_labels: 38, artist_density: 0.49385630994272517, album_density: 0.7990517382156825
+eps: 1.06, min_samples: 10, metric: euclidean, score: -0.32451735254551445, n_labels: 39, artist_density: 0.509260172918428, album_density: 0.7761215296977068
+eps: 1.07, min_samples: 10, metric: euclidean, score: -0.3230917468260983, n_labels: 39, artist_density: 0.5104760781060274, album_density: 0.7758364970469014
+eps: 1.08, min_samples: 10, metric: euclidean, score: -0.31002830087677563, n_labels: 37, artist_density: 0.5180925843170756, album_density: 0.7802387935019592
+eps: 1.09, min_samples: 10, metric: euclidean, score: -0.2831313072399931, n_labels: 36, artist_density: 0.5454255515713227, album_density: 0.8073103784458991
+eps: 1.1, min_samples: 10, metric: euclidean, score: -0.2398602279145437, n_labels: 29, artist_density: 0.5638120074984816, album_density: 0.8140591257525941
+eps: 1.1099999999999999, min_samples: 10, metric: euclidean, score: -0.25245399054236056, n_labels: 24, artist_density: 0.5750889402249955, album_density: 0.7892040384182383
+eps: 1.12, min_samples: 10, metric: euclidean, score: -0.2173779814179443, n_labels: 21, artist_density: 0.5688528811780141, album_density: 0.7950994145188636
+eps: 1.13, min_samples: 10, metric: euclidean, score: -0.2098496015628442, n_labels: 20, artist_density: 0.5332368331825237, album_density: 0.7925209707081584
+eps: 1.1400000000000001, min_samples: 10, metric: euclidean, score: -0.2496779595178619, n_labels: 22, artist_density: 0.5656170783878708, album_density: 0.8046000520930936
+eps: 1.15, min_samples: 10, metric: euclidean, score: -0.22655822712335086, n_labels: 21, artist_density: 0.523134861582051, album_density: 0.8098606896275905
+eps: 1.16, min_samples: 10, metric: euclidean, score: -0.2595977307268326, n_labels: 22, artist_density: 0.4960480191869436, album_density: 0.7781398735758394
+eps: 1.17, min_samples: 10, metric: euclidean, score: -0.22018848221287515, n_labels: 19, artist_density: 0.5415961657804611, album_density: 0.7852962791076665
+eps: 1.18, min_samples: 10, metric: euclidean, score: -0.1390851630413252, n_labels: 16, artist_density: 0.5593591219130877, album_density: 0.7770244014485509
+eps: 1.19, min_samples: 10, metric: euclidean, score: -0.14039189094127894, n_labels: 17, artist_density: 0.5654693604115456, album_density: 0.7823220478437181
+eps: 1.2, min_samples: 10, metric: euclidean, score: -0.13351794732362074, n_labels: 18, artist_density: 0.5949559943617051, album_density: 0.7972631651883355
+eps: 1.21, min_samples: 10, metric: euclidean, score: -0.09178105033120088, n_labels: 18, artist_density: 0.5925782055840645, album_density: 0.7946204064083936
+eps: 1.22, min_samples: 10, metric: euclidean, score: -0.10784422007457248, n_labels: 18, artist_density: 0.5725307941493295, album_density: 0.7898173862243753
+eps: 1.23, min_samples: 10, metric: euclidean, score: -0.12150509630671122, n_labels: 18, artist_density: 0.539401472776903, album_density: 0.7675677556679594
+eps: 1.24, min_samples: 10, metric: euclidean, score: -0.11448211859250725, n_labels: 18, artist_density: 0.5495604549835801, album_density: 0.7788771202596914
+eps: 1.25, min_samples: 10, metric: euclidean, score: -0.13192059749565038, n_labels: 18, artist_density: 0.5291691229991533, album_density: 0.7965163285230521
+eps: 1.26, min_samples: 10, metric: euclidean, score: -0.12051840261150408, n_labels: 16, artist_density: 0.5388370751434193, album_density: 0.7853485149378645
+eps: 1.27, min_samples: 10, metric: euclidean, score: -0.09814438396495949, n_labels: 15, artist_density: 0.5533984632655625, album_density: 0.7882662574146334
+eps: 1.28, min_samples: 10, metric: euclidean, score: -0.07974398272268579, n_labels: 15, artist_density: 0.5697261292715616, album_density: 0.7973833283775813
+eps: 1.29, min_samples: 10, metric: euclidean, score: -0.07496244174217621, n_labels: 13, artist_density: 0.5892754125736299, album_density: 0.8050781825575716
+eps: 1.3, min_samples: 10, metric: euclidean, score: -0.07658118338644204, n_labels: 12, artist_density: 0.5870631952694374, album_density: 0.8000506903295976
