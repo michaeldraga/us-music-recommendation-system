@@ -3,7 +3,7 @@ import time
 import json
 import base64
 from typing import MutableSequence, Union
-import traceback 
+import traceback
 
 def format_query(**kwargs):
     return '&'.join([f'{key}={value}' for key, value in kwargs.items()])
@@ -33,7 +33,7 @@ class SpotifyApi:
             'value': value,
             'timestamp': time.time()
         }
-    
+
     def get_from_cache(self, key: str, id: str):
         try:
             if id in self.cache[key] and time.time() - self.cache[key][id]['timestamp'] < 60 * 60 * 24:
@@ -46,7 +46,7 @@ class SpotifyApi:
     def save_cache(self):
         with open('cache.json', 'w') as file:
             json.dump(self.cache, file)
-    
+
     def load_cache(self):
         try:
             with open('cache.json', 'r') as file:
@@ -69,10 +69,10 @@ class SpotifyApi:
             self.valence = valence
             self.tempo = tempo
             self.time_signature = time_signature
-        
+
         def __repr__(self):
             return f'AudioFeatures({self.track_id})'
-        
+
         def __str__(self):
             str = 'AudioFeatures(\n'
             for key, value in self.__dict__.items():
@@ -97,7 +97,7 @@ class SpotifyApi:
                 tempo=data['tempo'],
                 time_signature=data['time_signature']
             )
-        
+
         def to_dict(self):
             return {
                 'track_id': self.track_id,
@@ -167,7 +167,7 @@ class SpotifyApi:
                 'genres': self.genres,
                 'uri': self.uri
             }
-        
+
         @staticmethod
         def from_dict(data: dict):
             return SpotifyApi.Artist(
@@ -210,7 +210,7 @@ class SpotifyApi:
                 'uri': self.uri,
                 'artists': [artist.to_dict() for artist in self.artists]
             }
-        
+
         @staticmethod
         def from_dict(data: dict):
             return SpotifyApi.Album(
@@ -257,7 +257,7 @@ class SpotifyApi:
                 'name': self.name,
                 'uri': self.uri
             }
-        
+
         @staticmethod
         def from_dict(data: dict):
             return SpotifyApi.Playlist(
@@ -309,7 +309,7 @@ class SpotifyApi:
                 data['preview_url'],
                 data['uri']
             )
-        
+
         def to_dict(self):
             return {
                 'id': self.id,
@@ -325,7 +325,7 @@ class SpotifyApi:
                 'preview_url': self.preview_url,
                 'uri': self.uri
             }
-        
+
         @staticmethod
         def from_dict(data: dict):
             return SpotifyApi.Track(
@@ -387,7 +387,7 @@ class SpotifyApi:
                 data['time_signature'],
                 data['valence']
             )
-        
+
     class TrackWithFeatures:
         def __init__(self, track: 'SpotifyApi.Track', features: 'SpotifyApi.TrackFeatures') -> None:
             self.track = track
@@ -563,7 +563,7 @@ class SpotifyApi:
 
                 playlists = [SpotifyApi.Playlist.from_response(
                     p) for p in content['playlists']['items']]
-                
+
                 # self.save_to_cache('categories', category_id, [p.to_dict() for p in playlists])
 
                 return (url, 'OK', playlists)
@@ -603,7 +603,7 @@ class SpotifyApi:
 
                 for track in tracks:
                     self.save_to_cache('tracks', track.id, track.to_dict())
-                
+
                 self.save_to_cache('playlists', playlist_id, [track.id for track in tracks])
 
                 return (url, 'OK', tracks)
@@ -659,7 +659,7 @@ class SpotifyApi:
             print(e)
             print(''.join(traceback.format_tb(e.__traceback__)))
             return (url, 'ERROR', None)
-    
+
     async def fetch_artist(self, session: ClientSession, id: str):
         url = 'https://api.spotify.com/v1/artists/{}'.format(id)
         try:
@@ -676,7 +676,7 @@ class SpotifyApi:
         elif len(ids) > 50:
             print('Warning: You passed more than 50 ids. Only the first 50 will be used.')
             ids = ids[:50]
-        
+
         # ids_to_fetch = list(filter(lambda id: id not in self.cache['artists'], ids))
         ids_to_fetch = ids
 
@@ -694,12 +694,12 @@ class SpotifyApi:
                 if content is None:
                     print(response)
                     return (url, 'ERROR', response.text())
-                
+
                 artists = [SpotifyApi.Artist.from_response(a) for a in content['artists']]
 
                 for artist in artists:
                     self.save_to_cache('artists', artist.id, artist.to_dict())
-                
+
                 return (url, 'OK', [SpotifyApi.Artist.from_dict(self.get_from_cache('artists', id)) for id in ids])
         except Exception as e:
             print(e)
@@ -753,10 +753,10 @@ class SpotifyApi:
             async with session.get(url, params=params, headers=({} | self.__get_auth_header())) as response:
                 content = await response.json()
                 features = [SpotifyApi.AudioFeatures.from_response(f) for f in content['audio_features']]
-                
+
                 for feature in features:
                     self.save_to_cache('audio_features', feature.track_id, feature.to_dict())
-                
+
                 return (url, 'OK', [SpotifyApi.AudioFeatures.from_dict(self.get_from_cache('audio_features', id)) for id in ids])
         except Exception as e:
             print(e)
