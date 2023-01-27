@@ -2,7 +2,7 @@
 
 ## Introduction
 
-There are two jupyter notebooks in this folder: notebook.ipynb and presentation.ipynb. While the latter is a notebook that was specifically made for the presentation (as the name suggests), the former is the notebook which was actually used for modelling. Both of these notebooks are fairly large since they contain a lot of visualizations, so it might take some time to open them. 
+There are two jupyter notebooks in this folder: [notebook.ipynb](./notebook.ipynb) and [presentation.ipynb](./presentation.ipynb). While the latter is a notebook that was specifically made for the presentation (as the name suggests), the former is the notebook which was actually used for modelling. Both of these notebooks are fairly large since they contain a lot of visualizations, so it might take some time to open them. 
 
 While running the presentation notebook should run through without a problem (although taking some time), the modelling notebook contains some code that has potential to crash the kernel or takes extremely long to run (multiple hours). For this reason we have introduced run levels. You can find the definition for RunLevel enum and the currently set enum in one of the first code blocks of the notebook. While the enum has comments explaining all of the run levels, we will still give a short explanation here:
 
