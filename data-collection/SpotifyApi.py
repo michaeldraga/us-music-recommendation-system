@@ -532,25 +532,17 @@ class SpotifyApi:
         try:
             async with session.get(url, headers=({} | self.__get_auth_header())) as response:
                 content = await response.json()
-
-                print_json(content)
-
-                # for c in content['categories']['items']:
-                #     self.save_to_cache('categories', c['id'], c)
-
-                # return (url, 'OK', [self.get_from_cache('categories', c['id']) for c in content['categories']['items']])
                 return (url, 'OK', content['categories']['items'])
         except Exception as e:
             print(e)
             return (url, 'ERROR', None)
 
     async def fetch_all_playlists_in_category(self, session: ClientSession, category_id: str, offset=0, limit=20, country='US'):
-        # return cached playlists if available
-        # if category_id in self.cache['categories']:
-        #     print(self.get_from_cache('categories', category_id))
-        #     for playlist_id in [self.get_from_cache('playlists', playlist['id']) for playlist in self.get_from_cache('categories', category_id)]:
-        #         print(self.get_from_cache('playlists', playlist_id))
-        #     return (None, 'OK', [SpotifyApi.Playlist.from_dict(self.get_from_cache('playlists', playlist_id)) for playlist_id in self.get_from_cache('categories', category_id)])
+        if category_id in self.cache['categories']:
+            print(self.get_from_cache('categories', category_id))
+            for playlist_id in [self.get_from_cache('playlists', playlist['id']) for playlist in self.get_from_cache('categories', category_id)]:
+                print(self.get_from_cache('playlists', playlist_id))
+            return (None, 'OK', [SpotifyApi.Playlist.from_dict(self.get_from_cache('playlists', playlist_id)) for playlist_id in self.get_from_cache('categories', category_id)])
 
         url = 'https://api.spotify.com/v1/browse/categories/{}/playlists?{}'.format(
             category_id, format_query(offset=offset, limit=limit, country=country))
@@ -564,7 +556,7 @@ class SpotifyApi:
                 playlists = [SpotifyApi.Playlist.from_response(
                     p) for p in content['playlists']['items']]
 
-                # self.save_to_cache('categories', category_id, [p.to_dict() for p in playlists])
+                self.save_to_cache('categories', category_id, [p.to_dict() for p in playlists])
 
                 return (url, 'OK', playlists)
         except Exception as e:
@@ -573,7 +565,6 @@ class SpotifyApi:
             return (url, 'ERROR', None)
 
     async def fetch_all_tracks_in_playlist(self, session: ClientSession, playlist_id: str, offset=0, limit=100):
-        # return cached tracks if available
         if playlist_id in self.cache['playlists']:
             print('cache hit playlist')
             return (None, 'OK', [SpotifyApi.Track.from_dict(self.get_from_cache('tracks', track_id)) for track_id in self.get_from_cache('playlists', playlist_id)])
@@ -589,17 +580,17 @@ class SpotifyApi:
 
                 tracks = [SpotifyApi.Track.from_response(a['track']) for a in content['items']]
 
-                # for track in tracks:
-                #     for i in range(len(track.artists)):
-                #         artist = track.artists[i]
-                #         if artist.id in self.cache['artists']:
-                #             track.artists[i] = self.cache['artists'][artist.id]
-                #         else:
-                #             (_, _, newArtist) = await self.fetch_artist(session, artist.id)
-                #             artistObject = SpotifyApi.Artist.from_response(newArtist)
-                #             artistObject.genres = newArtist['genres']
-                #             self.cache['artists'][artist.id] = artistObject
-                #             track.artists[i] = self.cache['artists'][artist.id]
+                for track in tracks:
+                    for i in range(len(track.artists)):
+                        artist = track.artists[i]
+                        if artist.id in self.cache['artists']:
+                            track.artists[i] = self.cache['artists'][artist.id]
+                        else:
+                            (_, _, newArtist) = await self.fetch_artist(session, artist.id)
+                            artistObject = SpotifyApi.Artist.from_response(newArtist)
+                            artistObject.genres = newArtist['genres']
+                            self.cache['artists'][artist.id] = artistObject
+                            track.artists[i] = self.cache['artists'][artist.id]
 
                 for track in tracks:
                     self.save_to_cache('tracks', track.id, track.to_dict())
@@ -677,11 +668,10 @@ class SpotifyApi:
             print('Warning: You passed more than 50 ids. Only the first 50 will be used.')
             ids = ids[:50]
 
-        # ids_to_fetch = list(filter(lambda id: id not in self.cache['artists'], ids))
-        ids_to_fetch = ids
+        ids_to_fetch = list(filter(lambda id: id not in self.cache['artists'], ids))
 
-        # if ids_to_fetch == []:
-        #     return (None, 'OK', [SpotifyApi.Artist.from_dict(self.get_from_cache('artists', id)) for id in ids])
+        if ids_to_fetch == []:
+            return (None, 'OK', [SpotifyApi.Artist.from_dict(self.get_from_cache('artists', id)) for id in ids])
 
         url = 'https://api.spotify.com/v1/artists'
         params = {

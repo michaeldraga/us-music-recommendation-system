@@ -11,6 +11,30 @@ chmod +x setup.sh
 . ./setup.sh
 ```
 
+## Structure
+
+### data-collection
+
+This folder contains all files used to generate the dataset used for modelling. While `script.py` contains the business logic used to query the tracks, `SpotifyApi.py` contains a home-grown client for the Spotify API.
+
+Additionally, there are several csv files in this folder: one for every "entity" (artists, features, tracks), one containing tracks with artists and the full dataset, which is called `tracks_with_features_demo.csv`.
+
+You can find additional information in the README contained within the folder.
+
+### data-analysis
+
+This folder contains the notebook used for analysing the dataset. All required dependencies should be installed after executing `setup.sh`.
+
+### model
+
+This folder contains all code and miscellanious files needed for training and evaluating the model, as well as the notebook used in the presentation. Furthermore, it contains the images used in the presentation, a utility script to fill missing score values in one of the text files and an additional README.
+
+Please refer to aforementioned README for important information regarding the execution of the modelling notebook.
+
+### soundcloud-data-collection (deprecated)
+
+This folder contains the code used to query the SoundCloud API for track information. Since we decided to go with Spotify instead of SoundCloud, this code was never finished and has only been kept in this repository for the sake of completeness.
+
 ## Environment variables
 
 Environment variables are expected to be stored in `.env` files in the root folder of the package that uses them. Please find the keys of the expected environment variables for the existing packages below. If you have your own client credentials for any of these, feel free to use them. If not, please request them from us via email.
@@ -29,7 +53,7 @@ SOUNDCLOUD_CLIENT_ID=
 SOUNDCLOUD_CLIENT_SECRET=
 ```
 
-## Running the code
+## Running the code (data-collection / soundcloud-data-collection)
 
 Once the dependency script has been run and environment variables have been set up, feel free to run any of the packages as follows:
 

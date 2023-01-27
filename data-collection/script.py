@@ -39,14 +39,10 @@ def artists_list_to_dataframe(artists: MutableSequence['SpotifyApi.Artist']) -> 
     })
 
 def track_list_to_dataframe(tracks: MutableSequence['SpotifyApi.Track']) -> pd.DataFrame:
-    # print('track_list_to_dataframe')
-    # print([track.artists for track in tracks])
-    # print([track.artists[0].genres for track in tracks])
     return pd.DataFrame(data={
         'id': [track.id for track in tracks],
         'name': [track.name for track in tracks],
         'artists_ids': ["/".join(track.artists_ids) for track in tracks],
-        # 'artists_genres': ["/".join(["/".join(artist.genres) for artist in track.artists_ids]) for track in tracks],
         'album': [track.album.name for track in tracks],
         'preview_url': [track.preview_url for track in tracks],
         'duration_ms': [track.duration_ms for track in tracks],
@@ -176,50 +172,46 @@ async def main():
     async with aiohttp.ClientSession() as session:
         async with SpotifyApi(client_id=spotify_client_id, client_secret=spotify_client_secret, session=session) as spotify:
             try:
-                # category_df = await get_all_category_dataframe(session, spotify, cache=True)
-                # print(f'Had {spotify.cache_hits} cache hits')
-                # playlists_df = await get_all_playlists_for_category_dataframe(session, spotify, cois, category_df, cache=True)
-                # print(f'Had {spotify.cache_hits} cache hits')
-                # tracks_df = await get_all_tracks_in_playlists(session, spotify, playlists_df, cache=True)
+                category_df = await get_all_category_dataframe(session, spotify, cache=True)
+                print(f'Had {spotify.cache_hits} cache hits')
+                playlists_df = await get_all_playlists_for_category_dataframe(session, spotify, cois, category_df, cache=True)
+                print(f'Had {spotify.cache_hits} cache hits')
+                tracks_df = await get_all_tracks_in_playlists(session, spotify, playlists_df, cache=True)
                 tracks_df = pd.read_csv('tracks.csv')
                 print(f'Had {spotify.cache_hits} cache hits')
                 artists_df = pd.read_csv('artists.csv')
-                # artists_df = await get_all_artists(session, spotify, tracks_df, cache=True)
-                # print(f'Had {spotify.cache_hits} cache hits')
+                artists_df = await get_all_artists(session, spotify, tracks_df, cache=True)
+                print(f'Had {spotify.cache_hits} cache hits')
                 features_df = pd.read_csv('features.csv')
-                # features_df = await get_all_audio_features(session, spotify, tracks_df, cache=True)
-                # print(f'Had {spotify.cache_hits} cache hits')
+                features_df = await get_all_audio_features(session, spotify, tracks_df, cache=True)
+                print(f'Had {spotify.cache_hits} cache hits')
 
-                # # iterate through all tracks
-                # for _, row in tracks_df.iterrows():
-                #     # get artists for track
-                #     artists = artists_df[artists_df['artist_id'].isin(row['artist_id'].split('/'))]
-                #     # set artist names in artist_names column
-                #     tracks_df.at[row.name, 'artist_names'] = artists['name'].str.cat(sep='/')
-                #     # set combined artist genres in artist_genres column
-                #     tracks_df.at[row.name, 'artist_genres'] = artists['genres'].str.cat(sep='/')
+                # iterate through all tracks
+                for _, row in tracks_df.iterrows():
+                    # get artists for track
+                    artists = artists_df[artists_df['artist_id'].isin(row['artist_id'].split('/'))]
+                    # set artist names in artist_names column
+                    tracks_df.at[row.name, 'artist_names'] = artists['name'].str.cat(sep='/')
+                    # set combined artist genres in artist_genres column
+                    tracks_df.at[row.name, 'artist_genres'] = artists['genres'].str.cat(sep='/')
 
                 print(tracks_df)
 
-                # tracks_df.to_csv(
-                #     'tracks.csv', index=False, sep=',')
+                tracks_df.to_csv(
+                    'tracks.csv', index=False, sep=',')
                 
-                # artists_df.to_csv(
-                #     'artists.csv', index=False, sep=',')
+                artists_df.to_csv(
+                    'artists.csv', index=False, sep=',')
 
-                # features_df.to_csv(
-                #     'features.csv', index=False, sep=',')
+                features_df.to_csv(
+                    'features.csv', index=False, sep=',')
 
 
-                # print all rows in artists_df where name is not a string
-                print(artists_df['genres'].isna().sum())
-                
-                
-                # tracks_df['artist_names'] = tracks_df['artists_ids'].apply(lambda x: artists_df[artists_df['artist_id'].isin(x.split('/'))]['name'].str.cat(sep='/'))
-                # tracks_df['artist_genres'] = tracks_df['artists_ids'].apply(lambda x: artists_df[artists_df['artist_id'].isin(x.split('/'))]['genres'].str.cat(sep='/'))
+                tracks_df['artist_names'] = tracks_df['artists_ids'].apply(lambda x: artists_df[artists_df['artist_id'].isin(x.split('/'))]['name'].str.cat(sep='/'))
+                tracks_df['artist_genres'] = tracks_df['artists_ids'].apply(lambda x: artists_df[artists_df['artist_id'].isin(x.split('/'))]['genres'].str.cat(sep='/'))
 
-                # tracks_df.to_csv(
-                #     'tracks_with_artists.csv', index=False, sep=',')
+                tracks_df.to_csv(
+                    'tracks_with_artists.csv', index=False, sep=',')
 
                 tracks_with_artists_df = pd.read_csv('tracks_with_artists.csv')
 
@@ -227,7 +219,6 @@ async def main():
                     tracks_with_artists_df, features_df, left_on='id', right_on='track_id').drop('track_id', axis=1)
                 print(tracks_with_features_df)
 
-                # write to csv
                 tracks_with_features_df.to_csv(
                     'tracks_with_features_demo.csv', index=False, sep=',')
             except Exception as e:
