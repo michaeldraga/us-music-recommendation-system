@@ -2,6 +2,12 @@
 
 Hello and welcome to the Unternehemenssoftware project repository of group Spotify (formerly group soundcloud)! Below you will find some basic instructions that should get you started in no time. In case of any questions please do not hesitate to contact any of us using the email addresses below. Cheers!
 
+## The Team
+
+- Eyad Wahdan
+- Kourosh Maleki
+- Michael Draga
+
 ## Setup
 
 ```bash

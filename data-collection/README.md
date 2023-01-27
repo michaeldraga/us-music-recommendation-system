@@ -4,7 +4,7 @@
 
 To collect the data that we'll use for training and validating our model, we're taking the following approach:
 
-First, we will get the categories listed below from the Spotify API (further just called "API"). For each of these categories, we will be requesting the playlists contained within them. Afterwards, our algorithm will fetch general information about the tracks in all of these playlists, as well as their audio-features. 
+First, we will get the categories listed below from the [Spotify API](https://developer.spotify.com/documentation/web-api/reference) (further just called "API"). For each of these categories, we will be requesting the playlists contained within them. Afterwards, our algorithm will fetch general information about the tracks in all of these playlists, as well as their audio-features. 
 
 In case we need more data for improving our model in the future, we would take the following approach:
 
